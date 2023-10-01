@@ -33,6 +33,7 @@ export const contactsSlice = createSlice({
         deleteContacts: (state, action) => {
             const index = state.contacts.findIndex(task => task.id === action.payload)
             state.contacts.splice(index, 1)
+            // state.contacts.filter((el) => el.id !== action.payload);
         },
         setFilter: (state, action) => {
             state.filter = action.payload
