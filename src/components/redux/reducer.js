@@ -1,4 +1,6 @@
-import { createReducer, createSlice } from "@reduxjs/toolkit";
+// import { createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import {combineReducers} from 'redux';
 // import {creatContacts, setFilter, deleteContacts} from './actions'
 import {InitialState} from './initialState'
 
@@ -32,26 +34,16 @@ export const contactsSlice = createSlice({
             const index = state.contacts.findIndex(task => task.id === action.payload)
             state.contacts.splice(index, 1)
         },
-    },
-})
-
-export const filterSlice = createSlice({
-    name: 'filter',
-    initialState: InitialState,
-    reducers: {
         setFilter: (state, action) => {
-            return {
-            filter: action.payload,
-          };
+            state.filter = action.payload
         },
     },
 })
 
-
 export const contactsReducer = contactsSlice.reducer
 
-export const filtersReducer = filterSlice.reducer
+export const {creatContacts, deleteContacts, setFilter} = contactsSlice.actions
 
-export const {creatContacts, deleteContacts} = contactsSlice.actions
-
-export const {setFilter} = filterSlice.actions
+export const rootReducer = combineReducers({
+    contacts: contactsReducer,
+  });
