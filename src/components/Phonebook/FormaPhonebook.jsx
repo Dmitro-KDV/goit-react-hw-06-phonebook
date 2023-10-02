@@ -1,9 +1,16 @@
 import {Form, Label} from './Phonebook.stiled';
 import { useState } from 'react'
+import { nanoid } from "@reduxjs/toolkit";
+import { creatContacts } from 'components/redux/reducer';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const FormaPhonebook = ({addContacts}) => {
+export const FormaPhonebook = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+
+    const { contacts} = useSelector(state => state.contacts);
+
+    const dispatch = useDispatch();
 
     const handleChange = evt => {
         const { name, value } = evt.target;
@@ -21,7 +28,16 @@ export const FormaPhonebook = ({addContacts}) => {
                 setName('');
                 setNumber('');
         
-        addContacts({name, number});
+        const isAlredyContacts = contacts.find(el => el.name === name);
+        if (isAlredyContacts) return alert(`${name} is alredy in contacts.`);
+    
+        const newContacts = {
+            id: nanoid(),
+            name: name,
+            number: number,
+        }
+        dispatch(creatContacts(newContacts));
+
         setName('');
         setNumber('');
     };

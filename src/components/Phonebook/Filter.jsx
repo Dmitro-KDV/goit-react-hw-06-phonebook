@@ -1,6 +1,12 @@
-export const Filter = ({filterContacts}) => {
+import { setFilter } from "components/redux/reducer";
+import { useDispatch } from "react-redux";
+
+export const Filter = () => {
+    
+    const dispatch = useDispatch();
+
     const handleChange = ({ target: {value} }) => {
-        filterContacts(value);
+        dispatch(setFilter(value));
     };
     
     return ( 
