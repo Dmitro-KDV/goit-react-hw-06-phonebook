@@ -1,6 +1,6 @@
 // import { createReducer, createSlice } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import {combineReducers} from 'redux';
+// import {combineReducers} from 'redux';
 // import {creatContacts, setFilter, deleteContacts} from './actions'
 import {InitialState} from './initialState'
 
@@ -46,6 +46,6 @@ export const contactsReducer = contactsSlice.reducer
 
 export const {creatContacts, deleteContacts, setFilter} = contactsSlice.actions
 
-export const rootReducer = combineReducers({
-    contacts: contactsReducer,
-  });
+// export const rootReducer = combineReducers({
+//     contacts: contactsReducer,
+//   });
